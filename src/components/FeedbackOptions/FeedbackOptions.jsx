@@ -1,4 +1,5 @@
 import { OptionsBtn, OptionsBtnWrapper } from './FeedbackOptions.styled.';
+import PropTypes from 'prop-types';
 
 export const FeedbackOptions = ({ onLeaveFeedback, options }) => {
   return (
@@ -6,6 +7,7 @@ export const FeedbackOptions = ({ onLeaveFeedback, options }) => {
       {Object.keys(options).map(option => (
         <OptionsBtn
           key={option}
+          option={option}
           type="button"
           onClick={() => {
             onLeaveFeedback(option);
@@ -16,4 +18,13 @@ export const FeedbackOptions = ({ onLeaveFeedback, options }) => {
       ))}
     </OptionsBtnWrapper>
   );
+};
+
+FeedbackOptions.propTypes = {
+  options: PropTypes.exact({
+    good: PropTypes.number.isRequired,
+    neutral: PropTypes.number.isRequired,
+    bad: PropTypes.number.isRequired,
+  }),
+  onLeaveFeedback: PropTypes.func,
 };
